@@ -100,10 +100,9 @@ jobs:
         git clone https://github.com/coccinelle/coccinelle
         cd coccinelle
         ./autogen
-        ./configure --enable-python --enable-ocaml --enable-pcre-syntax --enable-pcre --enable-opt --disable-bytes
+        ./configure --prefix=$OPAM_SWITCH_PREFIX --enable-python --enable-ocaml --enable-pcre-syntax --enable-pcre --enable-opt --disable-bytes
         make
-        sudo make install
-        sudo make install-python
+        make install
 
     - name: Spatch Version
       run: |
