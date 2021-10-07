@@ -97,13 +97,14 @@ jobs:
       if: ${{ matrix.coccinelle-version == 'git' }}
       run: |
         eval $(opam env)
+        opam remove -y coccinelle
         opam install -y num camlp4 pcre pyml menhir
         git clone https://github.com/coccinelle/coccinelle
         cd coccinelle
         ./autogen
-        ./configure --prefix=$OPAM_SWITCH_PREFIX --enable-python --enable-ocaml --enable-pcre-syntax --enable-pcre --enable-opt --disable-bytes
-        make
-        make install
+        ./configure --enable-python --enable-ocaml --enable-pcre-syntax --enable-pcre --enable-opt --disable-bytes
+        make opt-only
+        sudo make install
 
     - name: Spatch Version
       run: |
