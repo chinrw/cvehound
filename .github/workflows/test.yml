@@ -91,6 +91,7 @@ jobs:
       run: |
         eval $(opam env)
         opam install -y coccinelle.${{ matrix.coccinelle-version }}
+        opam pin coccinelle ${{ matrix.coccinelle-version }}
 
     - name: Install latest Coccinelle from git
       if: ${{ matrix.coccinelle-version == 'git' }}
